@@ -67,7 +67,7 @@ public sealed class KozyService
             using var searcher = new ManagementObjectSearcher("SELECT Name FROM Win32_Processor");
             foreach (var item in searcher.Get())
             {
-                CpuName = item["Name"]?.ToString()?.Trim() ?? "Prozessor";
+                CpuName = item["Name"]?.ToString()?.Trim() ?? "Processor";
                 break;
             }
         }

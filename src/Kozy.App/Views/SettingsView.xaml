@@ -10,8 +10,8 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="24" MaxWidth="800" HorizontalAlignment="Stretch">
             <!-- Header -->
-            <TextBlock Text="Einstellungen &amp; Info" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
-            <TextBlock Text="Projekt-Informationen und Datenordner." Foreground="#8A8886" Margin="0,0,0,24" />
+            <TextBlock Text="Settings &amp; About" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
+            <TextBlock Text="Project information and local storage directories." Foreground="#8A8886" Margin="0,0,0,24" />
 
             <!-- About Card -->
             <ui:Card Margin="0,0,0,16" Padding="20">
@@ -23,9 +23,14 @@
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="kozy - Windows Optimizer" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
                         <TextBlock Text="{Binding AppVersion}" Foreground="#57D98D" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                        <TextBlock Text="100 % Free &amp; Open Source Windows Optimierungstool. Sicher, transparent und reversibel." Foreground="#8A8886" FontSize="12"/>
+                        <TextBlock Text="100% Free &amp; Open Source Windows optimization utility. Safe, transparent, and reversible." Foreground="#8A8886" FontSize="12"/>
                     </StackPanel>
-                    <ui:Button Grid.Column="1" Content="GitHub Repository" Appearance="Primary" Command="{Binding OpenGitHubCommand}" VerticalAlignment="Center"/>
+                    <ui:Button Grid.Column="1" Appearance="Primary" Command="{Binding OpenGitHubCommand}" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="Code24" FontSize="16" Margin="0,0,8,0"/>
+                            <TextBlock Text="GitHub Repository" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ui:Button>
                 </Grid>
             </ui:Card>
 
@@ -37,21 +42,26 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="Lokale Daten &amp; Sitzungs-Journale" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBlock Text="Local Data &amp; Session Journals" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,4"/>
                         <TextBlock Text="{Binding DataDirectory}" Foreground="#8A8886" FontSize="12" Margin="0,0,0,4"/>
-                        <TextBlock Text="Hier speichert kozy Sitzungs-Protokolle, Backups und Logs zur vollständigen Nachvollziehbarkeit." Foreground="#AAAAAA" FontSize="12"/>
+                        <TextBlock Text="kozy stores session journals, backups, and logs here for complete auditability." Foreground="#AAAAAA" FontSize="12"/>
                     </StackPanel>
-                    <ui:Button Grid.Column="1" Content="Ordner öffnen" Command="{Binding OpenDataFolderCommand}" VerticalAlignment="Center"/>
+                    <ui:Button Grid.Column="1" Command="{Binding OpenDataFolderCommand}" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="Folder24" FontSize="16" Margin="0,0,8,0"/>
+                            <TextBlock Text="Open Folder" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ui:Button>
                 </Grid>
             </ui:Card>
 
             <!-- Safety Guarantee Card -->
             <ui:Card Margin="0,0,0,16" Padding="20">
                 <StackPanel>
-                    <TextBlock Text="Sicherheits-Garantie" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                    <TextBlock Text="• Vor Optimierungen wird automatisch ein Windows-Wiederherstellungspunkt angelegt." Foreground="#CCCCCC" Margin="0,0,0,4"/>
-                    <TextBlock Text="• Alle Änderungen werden im Journal erfasst und können vollständig rückgängig gemacht werden." Foreground="#CCCCCC" Margin="0,0,0,4"/>
-                    <TextBlock Text="• Keine bösartigen Kerneltreiber, keine Spiele-Eingriffe und keine Anti-Cheat-Kollisionen." Foreground="#CCCCCC"/>
+                    <TextBlock Text="Safety Guarantee" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBlock Text="• Automatically creates a Windows System Restore Point prior to applying system tweaks." Foreground="#CCCCCC" Margin="0,0,0,4"/>
+                    <TextBlock Text="• Every registry and service modification is journaled for 1-click instant rollback." Foreground="#CCCCCC" Margin="0,0,0,4"/>
+                    <TextBlock Text="• Zero kernel drivers, no game tampering, zero anti-cheat flags or bans." Foreground="#CCCCCC"/>
                 </StackPanel>
             </ui:Card>
         </StackPanel>

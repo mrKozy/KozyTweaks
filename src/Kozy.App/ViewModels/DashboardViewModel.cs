@@ -24,7 +24,7 @@ public partial class DashboardViewModel : ObservableObject
     private int _appliedTweaksCount;
 
     [ObservableProperty]
-    private string _statusMessage = "Bereit";
+    private string _statusMessage = "Ready";
 
     [ObservableProperty]
     private bool _isBusy;
@@ -39,7 +39,7 @@ public partial class DashboardViewModel : ObservableObject
     public async Task RefreshStatusAsync()
     {
         IsBusy = true;
-        StatusMessage = "Prüfe Systemzustand...";
+        StatusMessage = "Checking system state...";
 
         await Task.Run(() =>
         {
@@ -54,7 +54,7 @@ public partial class DashboardViewModel : ObservableObject
             AppliedTweaksCount = count;
         });
 
-        StatusMessage = $"Bereit. {AppliedTweaksCount} von {TotalTweaksCount} Optimierungen aktiv.";
+        StatusMessage = $"Ready. {AppliedTweaksCount} of {TotalTweaksCount} optimizations active.";
         IsBusy = false;
     }
 
@@ -67,7 +67,7 @@ public partial class DashboardViewModel : ObservableObject
     public async Task ApplySafePresetAsync()
     {
         IsBusy = true;
-        StatusMessage = "Wende sicheres Optimierungs-Preset an...";
+        StatusMessage = "Applying safe optimization preset...";
 
         var safeTweaks = _service.Catalog.GetByPreset(TweakPreset.Safe);
 
@@ -76,7 +76,7 @@ public partial class DashboardViewModel : ObservableObject
             StopOnError: false
         )));
 
-        StatusMessage = $"Abgeschlossen: {result.Applied} angewendet, {result.Skipped} unverändert, {result.Failed} Fehler.";
+        StatusMessage = $"Completed: {result.Applied} applied, {result.Skipped} unchanged, {result.Failed} failed.";
         await RefreshStatusAsync();
         IsBusy = false;
     }
@@ -85,14 +85,14 @@ public partial class DashboardViewModel : ObservableObject
     public async Task CreateRestorePointAsync()
     {
         IsBusy = true;
-        StatusMessage = "Erstelle Windows-Wiederherstellungspunkt...";
+        StatusMessage = "Creating Windows System Restore Point...";
 
         var service = new WindowsRestorePointService();
-        var point = await Task.Run(() => service.Create("kozy - Vor Optimierung"));
+        var point = await Task.Run(() => service.Create("kozy - Pre-Optimization"));
 
         StatusMessage = point?.Created == true
-            ? "Wiederherstellungspunkt erfolgreich erstellt."
-            : "Hinweis: Wiederherstellungspunkt konnte nicht erstellt werden (oder 24h-Limit aktiv).";
+            ? "System restore point created successfully."
+            : "Notice: System restore point could not be created (or 24-hour limit is active).";
 
         IsBusy = false;
     }

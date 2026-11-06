@@ -50,7 +50,7 @@ public partial class CleanerViewModel : ObservableObject
     private bool _isBusy;
 
     [ObservableProperty]
-    private string _statusMessage = "Bereit zum Scannen";
+    private string _statusMessage = "Ready to scan";
 
     [ObservableProperty]
     private string _totalSizeString = "0 MB";
@@ -60,13 +60,13 @@ public partial class CleanerViewModel : ObservableObject
         var local = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         var windows = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
 
-        Targets.Add(new CleanerTargetItem("UserTemp", "Benutzer-Temp", "Temporäre Anwendungsdateien des aktuellen Benutzers", Path.GetTempPath()));
-        Targets.Add(new CleanerTargetItem("WindowsTemp", "Windows-Temp", "Temporäre Systemdateien", Path.Combine(windows, "Temp")));
-        Targets.Add(new CleanerTargetItem("INetCache", "Browser-Cache (INetCache)", "Temporäre Internet-Dateien und Web-Caches", Path.Combine(local, "Microsoft", "Windows", "INetCache")));
-        Targets.Add(new CleanerTargetItem("ThumbnailCache", "Miniaturansichten-Cache", "Gecachte Explorer-Icons und Thumbnails", Path.Combine(local, "Microsoft", "Windows", "Explorer")));
-        Targets.Add(new CleanerTargetItem("D3DShaderCache", "DirectX Shader-Cache", "Kompilierte GPU-Shader (werden bei Bedarf neu gebaut)", Path.Combine(local, "D3DSCache")));
-        Targets.Add(new CleanerTargetItem("NvidiaShaderCache", "NVIDIA Shader-Cache", "NVIDIA Grafik-Shader-Dateien", Path.Combine(local, "NVIDIA", "DXCache")));
-        Targets.Add(new CleanerTargetItem("WUDownload", "Windows Update Cache", "Bereits installierte Download-Pakete von Windows Update", Path.Combine(windows, "SoftwareDistribution", "Download")));
+        Targets.Add(new CleanerTargetItem("UserTemp", "User Temp Files", "Temporary application files and caches for the current user", Path.GetTempPath()));
+        Targets.Add(new CleanerTargetItem("WindowsTemp", "Windows System Temp", "Temporary Windows system files and logs", Path.Combine(windows, "Temp")));
+        Targets.Add(new CleanerTargetItem("INetCache", "Browser & Web Cache", "Cached internet files and web components", Path.Combine(local, "Microsoft", "Windows", "INetCache")));
+        Targets.Add(new CleanerTargetItem("ThumbnailCache", "Thumbnail Cache", "Cached Windows Explorer icons and preview thumbnails", Path.Combine(local, "Microsoft", "Windows", "Explorer")));
+        Targets.Add(new CleanerTargetItem("D3DShaderCache", "DirectX Shader Cache", "Precompiled GPU shader caches (automatically rebuilt when needed)", Path.Combine(local, "D3DSCache")));
+        Targets.Add(new CleanerTargetItem("NvidiaShaderCache", "NVIDIA Shader Cache", "NVIDIA graphics pipeline shader files", Path.Combine(local, "NVIDIA", "DXCache")));
+        Targets.Add(new CleanerTargetItem("WUDownload", "Windows Update Cache", "Previously installed download packages from Windows Update", Path.Combine(windows, "SoftwareDistribution", "Download")));
 
         _ = ScanAsync();
     }
@@ -75,7 +75,7 @@ public partial class CleanerViewModel : ObservableObject
     public async Task ScanAsync()
     {
         IsBusy = true;
-        StatusMessage = "Berechne Speicherplatz...";
+        StatusMessage = "Calculating disk space...";
 
         long grandTotal = 0;
 
@@ -96,7 +96,7 @@ public partial class CleanerViewModel : ObservableObject
             _ => $"{grandTotal / 1024.0:F0} KB",
         };
 
-        StatusMessage = $"Scan abgeschlossen. {TotalSizeString} können bereinigt werden.";
+        StatusMessage = $"Scan complete. {TotalSizeString} can be safely cleaned.";
         IsBusy = false;
     }
 
@@ -106,12 +106,12 @@ public partial class CleanerViewModel : ObservableObject
         var selected = Targets.Where(t => t.IsSelected && t.SizeBytes > 0).ToList();
         if (selected.Count == 0)
         {
-            StatusMessage = "Keine Daten zum Bereinigen markiert.";
+            StatusMessage = "No items selected to clean.";
             return;
         }
 
         IsBusy = true;
-        StatusMessage = "Bereinige temporäre Dateien...";
+        StatusMessage = "Cleaning selected temporary files...";
 
         await Task.Run(() =>
         {
@@ -121,7 +121,7 @@ public partial class CleanerViewModel : ObservableObject
             }
         });
 
-        StatusMessage = "Bereinigung abgeschlossen!";
+        StatusMessage = "Cleaning completed successfully!";
         await ScanAsync();
         IsBusy = false;
     }

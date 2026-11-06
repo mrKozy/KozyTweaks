@@ -21,7 +21,7 @@ public partial class BenchmarkViewModel : ObservableObject
     private bool _isBusy;
 
     [ObservableProperty]
-    private string _statusMessage = "Bereit zum Testen";
+    private string _statusMessage = "Ready to test";
 
     [ObservableProperty]
     private string _minRtt = "-";
@@ -62,12 +62,12 @@ public partial class BenchmarkViewModel : ObservableObject
     {
         if (string.IsNullOrWhiteSpace(TargetHost))
         {
-            StatusMessage = "Bitte Ziel-Host angeben.";
+            StatusMessage = "Please specify a target host.";
             return;
         }
 
         IsBusy = true;
-        StatusMessage = $"Sende {PingCount} Pings an {TargetHost}...";
+        StatusMessage = $"Sending {PingCount} pings to {TargetHost}...";
         ProgressPercent = 0;
 
         var progress = new Progress<int>(p => ProgressPercent = p);
@@ -86,7 +86,7 @@ public partial class BenchmarkViewModel : ObservableObject
         Jitter = $"{result.JitterMs} ms";
         PacketLoss = $"{result.PacketLossPercent}%";
 
-        StatusMessage = $"Test abgeschlossen: {result.PacketsReceived}/{result.PacketsSent} Pakete empfangen ({PacketLoss} Verlust).";
+        StatusMessage = $"Test complete: {result.PacketsReceived}/{result.PacketsSent} packets received ({PacketLoss} loss).";
         IsBusy = false;
     }
 
@@ -95,8 +95,8 @@ public partial class BenchmarkViewModel : ObservableObject
     {
         var dialog = new OpenFileDialog
         {
-            Filter = "PresentMon CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*",
-            Title = "PresentMon Benchmark-CSV auswählen",
+            Filter = "PresentMon CSV files (*.csv)|*.csv|All files (*.*)|*.*",
+            Title = "Select PresentMon Benchmark CSV",
         };
 
         if (dialog.ShowDialog() == true)
@@ -107,7 +107,7 @@ public partial class BenchmarkViewModel : ObservableObject
                 var times = FrametimeBenchmark.ParsePresentMonCsv(content);
                 if (times.Count == 0)
                 {
-                    StatusMessage = "Keine gültigen Frametimes in CSV gefunden.";
+                    StatusMessage = "No valid frametimes found in CSV.";
                     return;
                 }
 
@@ -117,13 +117,13 @@ public partial class BenchmarkViewModel : ObservableObject
                 Fps1PercentLow = $"{metrics.OnePercentLowPercentileFps:F1} FPS";
                 Fps01PercentLow = $"{metrics.ZeroPointOnePercentLowPercentileFps:F1} FPS";
                 FpsStDev = $"{metrics.StandardDeviationMs:F2} ms";
-                FrametimeSummary = $"{metrics.TotalFrames} Frames analysiert (Ø {metrics.AvgFrameTimeMs:F2} ms Framezeit)";
+                FrametimeSummary = $"{metrics.TotalFrames} frames analyzed (avg {metrics.AvgFrameTimeMs:F2} ms frametime)";
                 HasFrametimeResults = true;
-                StatusMessage = "PresentMon-Benchmark erfolgreich importiert!";
+                StatusMessage = "PresentMon benchmark imported successfully!";
             }
             catch (Exception ex)
             {
-                StatusMessage = $"Fehler beim Lesen der CSV: {ex.Message}";
+                StatusMessage = $"Error reading CSV: {ex.Message}";
             }
         }
     }

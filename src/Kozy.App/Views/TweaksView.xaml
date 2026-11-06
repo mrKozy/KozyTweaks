@@ -17,8 +17,8 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Grid.Row="0" Text="System-Optimierungen (Tweaks)" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
-        <TextBlock Grid.Row="0" Text="Wähle Voreinstellungen oder passe einzelne Optionen granular an." 
+        <TextBlock Grid.Row="0" Text="System Optimizations (Tweaks)" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
+        <TextBlock Grid.Row="0" Text="Select a preset or configure individual options granularly." 
                    Foreground="#8A8886" Margin="0,32,0,16" />
 
         <!-- Controls Bar -->
@@ -32,21 +32,21 @@
             <!-- Presets Buttons -->
             <StackPanel Grid.Column="0" Orientation="Horizontal">
                 <TextBlock Text="Presets:" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,8,0" Foreground="#8A8886"/>
-                <ui:Button Content="Sicher" Command="{Binding SelectPresetCommand}" CommandParameter="Safe" Margin="0,0,6,0"/>
-                <ui:Button Content="Ausgewogen" Command="{Binding SelectPresetCommand}" CommandParameter="Balanced" Margin="0,0,6,0"/>
-                <ui:Button Content="Maximal" Command="{Binding SelectPresetCommand}" CommandParameter="Max" Margin="0,0,16,0"/>
+                <ui:Button Content="Safe" Command="{Binding SelectPresetCommand}" CommandParameter="Safe" Margin="0,0,6,0"/>
+                <ui:Button Content="Balanced" Command="{Binding SelectPresetCommand}" CommandParameter="Balanced" Margin="0,0,6,0"/>
+                <ui:Button Content="Max" Command="{Binding SelectPresetCommand}" CommandParameter="Max" Margin="0,0,16,0"/>
             </StackPanel>
 
             <!-- Search box -->
             <ui:TextBox Grid.Column="1" 
-                        PlaceholderText="Suche nach Name, ID oder Beschreibung..." 
+                        PlaceholderText="Search by name, ID or description..." 
                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                         Margin="0,0,16,0" 
                         VerticalAlignment="Center" />
 
             <!-- Category filter -->
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <TextBlock Text="Kategorie:" VerticalAlignment="Center" Margin="0,0,8,0" Foreground="#8A8886"/>
+                <TextBlock Text="Category:" VerticalAlignment="Center" Margin="0,0,8,0" Foreground="#8A8886"/>
                 <ComboBox ItemsSource="{Binding Categories}" 
                           SelectedItem="{Binding SelectedCategory}" 
                           MinWidth="120" 
@@ -90,13 +90,13 @@
                                                 <Style TargetType="Border">
                                                     <Setter Property="Background" Value="#333333"/>
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding RiskLabel}" Value="Sicher">
+                                                        <DataTrigger Binding="{Binding RiskLabel}" Value="Safe">
                                                             <Setter Property="Background" Value="#1E3A2B"/>
                                                         </DataTrigger>
-                                                        <DataTrigger Binding="{Binding RiskLabel}" Value="Ausgewogen">
+                                                        <DataTrigger Binding="{Binding RiskLabel}" Value="Moderate">
                                                             <Setter Property="Background" Value="#3D2D1B"/>
                                                         </DataTrigger>
-                                                        <DataTrigger Binding="{Binding RiskLabel}" Value="Experimentell">
+                                                        <DataTrigger Binding="{Binding RiskLabel}" Value="Experimental">
                                                             <Setter Property="Background" Value="#3D1B1B"/>
                                                         </DataTrigger>
                                                     </Style.Triggers>
@@ -107,13 +107,13 @@
                                                     <Style TargetType="TextBlock">
                                                         <Setter Property="Foreground" Value="#CCCCCC"/>
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding RiskLabel}" Value="Sicher">
+                                                            <DataTrigger Binding="{Binding RiskLabel}" Value="Safe">
                                                                 <Setter Property="Foreground" Value="#57D98D"/>
                                                             </DataTrigger>
-                                                            <DataTrigger Binding="{Binding RiskLabel}" Value="Ausgewogen">
+                                                            <DataTrigger Binding="{Binding RiskLabel}" Value="Moderate">
                                                                 <Setter Property="Foreground" Value="#FFB356"/>
                                                             </DataTrigger>
-                                                            <DataTrigger Binding="{Binding RiskLabel}" Value="Experimentell">
+                                                            <DataTrigger Binding="{Binding RiskLabel}" Value="Experimental">
                                                                 <Setter Property="Foreground" Value="#FF6B6B"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
@@ -129,9 +129,9 @@
 
                                 <!-- Applied Indicator -->
                                 <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right">
-                                    <TextBlock Text="Aktiv" FontWeight="SemiBold" FontSize="12" Foreground="#57D98D" 
+                                    <TextBlock Text="Active" FontWeight="SemiBold" FontSize="12" Foreground="#57D98D" 
                                                Visibility="{Binding IsApplied, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                    <TextBlock Text="Nicht aktiv" FontSize="12" Foreground="#666666" 
+                                    <TextBlock Text="Inactive" FontSize="12" Foreground="#666666" 
                                                Visibility="{Binding IsApplied, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=invert}"/>
                                 </StackPanel>
                             </Grid>
@@ -151,13 +151,23 @@
 
                 <StackPanel Grid.Column="0" VerticalAlignment="Center">
                     <TextBlock Text="{Binding StatusMessage}" Foreground="#AAAAAA" FontSize="12"/>
-                    <TextBlock Text="{Binding SelectedCount, StringFormat='{}{0} Optimierung(en) ausgewählt'}" FontWeight="SemiBold" FontSize="14" Margin="0,2,0,0"/>
+                    <TextBlock Text="{Binding SelectedCount, StringFormat='{}{0} optimization(s) selected'}" FontWeight="SemiBold" FontSize="14" Margin="0,2,0,0"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <ui:Button Content="Auswahl aufheben" Command="{Binding DeselectAllCommand}" Margin="0,0,10,0"/>
-                    <ui:Button Content="Zurücksetzen" Command="{Binding RevertSelectedCommand}" Margin="0,0,10,0"/>
-                    <ui:Button Content="Ausgewählte anwenden" Appearance="Primary" Command="{Binding ApplySelectedCommand}"/>
+                    <ui:Button Content="Deselect All" Command="{Binding DeselectAllCommand}" Margin="0,0,10,0"/>
+                    <ui:Button Command="{Binding RevertSelectedCommand}" Margin="0,0,10,0">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="ArrowCounterclockwise24" FontSize="16" Margin="0,0,8,0"/>
+                            <TextBlock Text="Revert" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ui:Button>
+                    <ui:Button Appearance="Primary" Command="{Binding ApplySelectedCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="Checkmark24" FontSize="16" Margin="0,0,8,0"/>
+                            <TextBlock Text="Apply Selected" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ui:Button>
                 </StackPanel>
             </Grid>
         </Border>

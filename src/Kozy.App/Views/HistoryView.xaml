@@ -15,8 +15,8 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Grid.Row="0" Text="Verlauf &amp; Rollback" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
-        <TextBlock Grid.Row="0" Text="Jede durchgeführte Optimierung wird transparent protokolliert und kann mit 1 Klick zurückgenommen werden." 
+        <TextBlock Grid.Row="0" Text="History &amp; Rollback" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
+        <TextBlock Grid.Row="0" Text="Every applied optimization is transparently journaled and can be restored with 1 click." 
                    Foreground="#8A8886" Margin="0,32,0,16" />
 
         <!-- Status Card -->
@@ -28,8 +28,18 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock VerticalAlignment="Center" Text="{Binding StatusMessage}" Foreground="#CCCCCC" FontSize="13" />
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <ui:Button Content="Systemwiederherstellung öffnen" Command="{Binding OpenSystemRestoreCommand}" Margin="0,0,10,0"/>
-                    <ui:Button Content="Aktualisieren" Command="{Binding RefreshCommand}"/>
+                    <ui:Button Command="{Binding OpenSystemRestoreCommand}" Margin="0,0,10,0">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="History24" FontSize="16" Margin="0,0,8,0"/>
+                            <TextBlock Text="Open System Restore" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ui:Button>
+                    <ui:Button Command="{Binding RefreshCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="ArrowSync24" FontSize="16" Margin="0,0,8,0"/>
+                            <TextBlock Text="Refresh" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ui:Button>
                 </StackPanel>
             </Grid>
         </ui:Card>
@@ -52,16 +62,20 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding FormattedTime, StringFormat='Sitzung vom {0}'}" FontWeight="SemiBold" FontSize="15" Margin="0,0,0,3"/>
+                                    <TextBlock Text="{Binding FormattedTime, StringFormat='Session from {0}'}" FontWeight="SemiBold" FontSize="15" Margin="0,0,0,3"/>
                                     <TextBlock Text="{Binding Details}" Foreground="#8A8886" FontSize="12"/>
                                 </StackPanel>
 
                                 <ui:Button Grid.Column="1" 
-                                           Content="Sitzung zurücknehmen" 
                                            Appearance="Danger"
                                            Command="{Binding DataContext.RollbackSessionCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                            CommandParameter="{Binding}"
-                                           VerticalAlignment="Center"/>
+                                           VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal">
+                                        <ui:SymbolIcon Symbol="ArrowCounterclockwise24" FontSize="16" Margin="0,0,8,0"/>
+                                        <TextBlock Text="Rollback Session" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </ui:Button>
                             </Grid>
                         </ui:Card>
                     </DataTemplate>

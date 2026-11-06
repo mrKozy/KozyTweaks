@@ -11,6 +11,50 @@
         MinHeight="600" MinWidth="960"
         WindowStartupLocation="CenterScreen"
         Background="#181818">
+    <Window.Resources>
+        <Style x:Key="NavRadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#A0A0A0"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="Border" 
+                                Background="{TemplateBinding Background}" 
+                                CornerRadius="6" 
+                                Padding="10,0" 
+                                SnapsToDevicePixels="True">
+                            <Grid>
+                                <Border x:Name="Indicator" 
+                                        Width="3" Height="18" 
+                                        HorizontalAlignment="Left" 
+                                        Background="#107C41" 
+                                        CornerRadius="1.5" 
+                                        Margin="-4,0,0,0" 
+                                        Visibility="Collapsed"/>
+                                <ContentPresenter VerticalAlignment="Center" Margin="6,0,0,0"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#252525"/>
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#2E2E2E"/>
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                <Setter TargetName="Indicator" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -49,58 +93,72 @@
                     <!-- Nav Items -->
                     <StackPanel Grid.Row="1" Margin="12,0,12,0">
                         <RadioButton x:Name="NavDashboard" 
-                                     Content="🏠  Übersicht" 
-                                     Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Height="40" Margin="0,2" Padding="12,0" 
-                                     HorizontalContentAlignment="Left"
+                                     Style="{StaticResource NavRadioButtonStyle}" 
                                      IsChecked="True"
-                                     Click="NavButton_Click" Tag="Dashboard"/>
+                                     Click="NavButton_Click" Tag="Dashboard">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <ui:SymbolIcon Symbol="Home24" FontSize="16" Margin="0,0,12,0"/>
+                                <TextBlock Text="Dashboard" VerticalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </RadioButton>
 
                         <RadioButton x:Name="NavTweaks" 
-                                     Content="⚡  Optimierungen" 
-                                     Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Height="40" Margin="0,2" Padding="12,0" 
-                                     HorizontalContentAlignment="Left"
-                                     Click="NavButton_Click" Tag="Tweaks"/>
+                                     Style="{StaticResource NavRadioButtonStyle}" 
+                                     Click="NavButton_Click" Tag="Tweaks">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <ui:SymbolIcon Symbol="Flash24" FontSize="16" Margin="0,0,12,0"/>
+                                <TextBlock Text="Tweaks" VerticalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </RadioButton>
 
                         <RadioButton x:Name="NavCleaner" 
-                                     Content="🧹  System-Cleaner" 
-                                     Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Height="40" Margin="0,2" Padding="12,0" 
-                                     HorizontalContentAlignment="Left"
-                                     Click="NavButton_Click" Tag="Cleaner"/>
+                                     Style="{StaticResource NavRadioButtonStyle}" 
+                                     Click="NavButton_Click" Tag="Cleaner">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <ui:SymbolIcon Symbol="Broom24" FontSize="16" Margin="0,0,12,0"/>
+                                <TextBlock Text="Cleaner" VerticalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </RadioButton>
 
                         <RadioButton x:Name="NavAutostart" 
-                                     Content="🚀  Autostart" 
-                                     Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Height="40" Margin="0,2" Padding="12,0" 
-                                     HorizontalContentAlignment="Left"
-                                     Click="NavButton_Click" Tag="Autostart"/>
+                                     Style="{StaticResource NavRadioButtonStyle}" 
+                                     Click="NavButton_Click" Tag="Autostart">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <ui:SymbolIcon Symbol="Rocket24" FontSize="16" Margin="0,0,12,0"/>
+                                <TextBlock Text="Startup Apps" VerticalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </RadioButton>
 
                         <RadioButton x:Name="NavBenchmark" 
-                                     Content="📊  Benchmark" 
-                                     Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Height="40" Margin="0,2" Padding="12,0" 
-                                     HorizontalContentAlignment="Left"
-                                     Click="NavButton_Click" Tag="Benchmark"/>
+                                     Style="{StaticResource NavRadioButtonStyle}" 
+                                     Click="NavButton_Click" Tag="Benchmark">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <ui:SymbolIcon Symbol="TopSpeed24" FontSize="16" Margin="0,0,12,0"/>
+                                <TextBlock Text="Benchmarks" VerticalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </RadioButton>
 
                         <RadioButton x:Name="NavHistory" 
-                                     Content="🕒  Verlauf &amp; Rollback" 
-                                     Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Height="40" Margin="0,2" Padding="12,0" 
-                                     HorizontalContentAlignment="Left"
-                                     Click="NavButton_Click" Tag="History"/>
+                                     Style="{StaticResource NavRadioButtonStyle}" 
+                                     Click="NavButton_Click" Tag="History">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <ui:SymbolIcon Symbol="History24" FontSize="16" Margin="0,0,12,0"/>
+                                <TextBlock Text="History &amp; Rollback" VerticalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </RadioButton>
                     </StackPanel>
 
                     <!-- Footer Settings -->
                     <StackPanel Grid.Row="2" Margin="12,0,12,16">
                         <Separator Background="#262626" Margin="0,0,0,12"/>
                         <RadioButton x:Name="NavSettings" 
-                                     Content="⚙️  Einstellungen" 
-                                     Style="{StaticResource {x:Type ToggleButton}}" 
-                                     Height="40" Padding="12,0" 
-                                     HorizontalContentAlignment="Left"
-                                     Click="NavButton_Click" Tag="Settings"/>
+                                     Style="{StaticResource NavRadioButtonStyle}" 
+                                     Click="NavButton_Click" Tag="Settings">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <ui:SymbolIcon Symbol="Settings24" FontSize="16" Margin="0,0,12,0"/>
+                                <TextBlock Text="Settings" VerticalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </RadioButton>
                     </StackPanel>
                 </Grid>
             </Border>

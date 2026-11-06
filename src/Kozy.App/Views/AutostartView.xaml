@@ -15,8 +15,8 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Grid.Row="0" Text="Autostart-Manager" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
-        <TextBlock Grid.Row="0" Text="Beschleunige den Systemstart durch Deaktivieren unnötiger Hintergrund-Apps." 
+        <TextBlock Grid.Row="0" Text="Startup Manager" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
+        <TextBlock Grid.Row="0" Text="Speed up boot times and reduce idle RAM by disabling unnecessary background applications." 
                    Foreground="#8A8886" Margin="0,32,0,16" />
 
         <!-- Status Card -->
@@ -27,7 +27,12 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock VerticalAlignment="Center" Text="{Binding StatusMessage}" Foreground="#CCCCCC" FontSize="13" />
-                <ui:Button Grid.Column="1" Content="Aktualisieren" Command="{Binding RefreshCommand}"/>
+                <ui:Button Grid.Column="1" Command="{Binding RefreshCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <ui:SymbolIcon Symbol="ArrowSync24" FontSize="16" Margin="0,0,8,0"/>
+                        <TextBlock Text="Refresh" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ui:Button>
             </Grid>
         </ui:Card>
 

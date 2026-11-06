@@ -10,15 +10,15 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="24" MaxWidth="1000" HorizontalAlignment="Stretch">
             <!-- Header -->
-            <TextBlock Text="Latenz- &amp; Gaming-Benchmark" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
-            <TextBlock Text="Messe Netzwerk-Latenz und analysiere echte Bildraten (Frametimes) vor und nach den Optimierungen." 
+            <TextBlock Text="Latency &amp; Gaming Benchmarks" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
+            <TextBlock Text="Measure network latency and analyze real frametime delivery before and after optimizations." 
                        Foreground="#8A8886" Margin="0,0,0,24" />
 
             <!-- Network Benchmark Section -->
             <ui:Card Margin="0,0,0,20" Padding="20">
                 <StackPanel>
-                    <TextBlock Text="Netzwerk-Latenz &amp; Jitter-Messung" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                    <TextBlock Text="Prüft Paketlaufzeiten, Stabilität (Jitter) und eventuellen Paketverlust zum gewählten Server." 
+                    <TextBlock Text="Network Latency &amp; Jitter Diagnostic" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBlock Text="Tests round-trip packet times, stability (jitter), and potential packet loss to the target server." 
                                Foreground="#8A8886" FontSize="12" Margin="0,0,0,16"/>
 
                     <!-- Inputs Grid -->
@@ -30,12 +30,12 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Margin="0,0,16,0">
-                            <TextBlock Text="Ziel-Host / IP" FontSize="12" Foreground="#8A8886" Margin="0,0,0,4"/>
-                            <ui:TextBox Text="{Binding TargetHost, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="z. B. 1.1.1.1"/>
+                            <TextBlock Text="Target Host / IP" FontSize="12" Foreground="#8A8886" Margin="0,0,0,4"/>
+                            <ui:TextBox Text="{Binding TargetHost, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="e.g. 1.1.1.1"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="0,0,16,0">
-                            <TextBlock Text="Anzahl Pings" FontSize="12" Foreground="#8A8886" Margin="0,0,0,4"/>
+                            <TextBlock Text="Ping Count" FontSize="12" Foreground="#8A8886" Margin="0,0,0,4"/>
                             <ComboBox SelectedValuePath="Tag" SelectedValue="{Binding PingCount}" HorizontalAlignment="Stretch">
                                 <ComboBoxItem Content="10 Pings" Tag="10"/>
                                 <ComboBoxItem Content="20 Pings" Tag="20" IsSelected="True"/>
@@ -45,10 +45,14 @@
                         </StackPanel>
 
                         <ui:Button Grid.Column="2" 
-                                   Content="Test starten" 
                                    Appearance="Primary"
                                    Command="{Binding RunPingTestCommand}" 
-                                   VerticalAlignment="Bottom"/>
+                                   VerticalAlignment="Bottom">
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Symbol="Play24" FontSize="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Start Test" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ui:Button>
                     </Grid>
 
                     <!-- Progress Bar -->
@@ -61,35 +65,35 @@
                     <UniformGrid Columns="5" Margin="0,4,0,0">
                         <ui:Card Margin="0,0,8,0" Padding="12">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="Min. Ping" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Min Ping" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding MinRtt}" FontSize="18" FontWeight="Bold" Foreground="#57D98D" HorizontalAlignment="Center" Margin="0,2,0,0"/>
                             </StackPanel>
                         </ui:Card>
 
                         <ui:Card Margin="4,0,4,0" Padding="12">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="Ø Ping" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Avg Ping" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding AvgRtt}" FontSize="18" FontWeight="Bold" Foreground="#FFFFFF" HorizontalAlignment="Center" Margin="0,2,0,0"/>
                             </StackPanel>
                         </ui:Card>
 
                         <ui:Card Margin="4,0,4,0" Padding="12">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="Max. Ping" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Max Ping" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding MaxRtt}" FontSize="18" FontWeight="Bold" Foreground="#AAAAAA" HorizontalAlignment="Center" Margin="0,2,0,0"/>
                             </StackPanel>
                         </ui:Card>
 
                         <ui:Card Margin="4,0,4,0" Padding="12">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="Jitter (Stabilität)" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Jitter (Stability)" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding Jitter}" FontSize="18" FontWeight="Bold" Foreground="#57D98D" HorizontalAlignment="Center" Margin="0,2,0,0"/>
                             </StackPanel>
                         </ui:Card>
 
                         <ui:Card Margin="8,0,0,0" Padding="12">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="Paketverlust" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Packet Loss" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding PacketLoss}" FontSize="18" FontWeight="Bold" Foreground="#57D98D" HorizontalAlignment="Center" Margin="0,2,0,0"/>
                             </StackPanel>
                         </ui:Card>
@@ -106,11 +110,16 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="PresentMon Frametime-Auswertung" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                            <TextBlock Text="Importiere Intel PresentMon CSV-Logs zur Messung von 1% Lows, 0.1% Lows und Frametime-Konsistenz." 
+                            <TextBlock Text="PresentMon Frametime Analysis" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <TextBlock Text="Import Intel PresentMon CSV logs to evaluate 1% Lows, 0.1% Lows, and frametime pacing." 
                                        Foreground="#8A8886" FontSize="12"/>
                         </StackPanel>
-                        <ui:Button Grid.Column="1" Content="CSV importieren" Command="{Binding ImportPresentMonCsvCommand}" VerticalAlignment="Center"/>
+                        <ui:Button Grid.Column="1" Command="{Binding ImportPresentMonCsvCommand}" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Symbol="ArrowSync24" FontSize="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Import CSV" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ui:Button>
                     </Grid>
 
                     <TextBlock Text="{Binding FrametimeSummary}" Foreground="#57D98D" FontSize="12" Margin="0,0,0,16"
@@ -119,7 +128,7 @@
                     <UniformGrid Columns="4" Visibility="{Binding HasFrametimeResults, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <ui:Card Margin="0,0,8,0" Padding="12">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="Durchschnittliche FPS" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Average FPS" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding FpsAvg}" FontSize="20" FontWeight="Bold" Foreground="#FFFFFF" HorizontalAlignment="Center" Margin="0,2,0,0"/>
                             </StackPanel>
                         </ui:Card>
@@ -140,7 +149,7 @@
 
                         <ui:Card Margin="8,0,0,0" Padding="12">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="Frametime-Streuung" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Frametime StDev" FontSize="11" Foreground="#8A8886" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding FpsStDev}" FontSize="20" FontWeight="Bold" Foreground="#AAAAAA" HorizontalAlignment="Center" Margin="0,2,0,0"/>
                             </StackPanel>
                         </ui:Card>

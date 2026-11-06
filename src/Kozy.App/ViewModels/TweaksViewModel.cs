@@ -17,7 +17,7 @@ public partial class TweaksViewModel : ObservableObject
     public ObservableCollection<string> Categories { get; } = [];
 
     [ObservableProperty]
-    private string _selectedCategory = "Alle";
+    private string _selectedCategory = "All";
 
     [ObservableProperty]
     private string _searchText = string.Empty;
@@ -33,7 +33,7 @@ public partial class TweaksViewModel : ObservableObject
 
     public TweaksViewModel()
     {
-        Categories.Add("Alle");
+        Categories.Add("All");
         foreach (var cat in _service.Catalog.GetCategories())
         {
             Categories.Add(cat);
@@ -70,7 +70,7 @@ public partial class TweaksViewModel : ObservableObject
 
         var query = _allItems.AsEnumerable();
 
-        if (!string.IsNullOrEmpty(SelectedCategory) && SelectedCategory != "Alle")
+        if (!string.IsNullOrEmpty(SelectedCategory) && SelectedCategory != "All")
         {
             query = query.Where(i => i.Category.Equals(SelectedCategory, StringComparison.OrdinalIgnoreCase));
         }
@@ -94,7 +94,7 @@ public partial class TweaksViewModel : ObservableObject
     public async Task DetectAllAsync()
     {
         IsBusy = true;
-        StatusMessage = "Ermittle aktuellen Systemzustand...";
+        StatusMessage = "Detecting current system status...";
 
         await Task.Run(() =>
         {
@@ -105,7 +105,7 @@ public partial class TweaksViewModel : ObservableObject
             }
         });
 
-        StatusMessage = "Zustände aktualisiert.";
+        StatusMessage = "Statuses updated.";
         IsBusy = false;
     }
 
@@ -127,7 +127,7 @@ public partial class TweaksViewModel : ObservableObject
             item.IsSelected = presetTweaks.Contains(item.Id);
         }
 
-        StatusMessage = $"Preset '{presetName}' gewählt ({SelectedCount} Optimierungen markiert).";
+        StatusMessage = $"Preset '{presetName}' selected ({SelectedCount} optimization(s) marked).";
     }
 
     [RelayCommand]
@@ -154,19 +154,19 @@ public partial class TweaksViewModel : ObservableObject
         var selected = _allItems.Where(i => i.IsSelected).Select(i => i.Manifest).ToList();
         if (selected.Count == 0)
         {
-            StatusMessage = "Keine Optimierungen ausgewählt.";
+            StatusMessage = "No optimizations selected.";
             return;
         }
 
         IsBusy = true;
-        StatusMessage = $"Wende {selected.Count} ausgewählte Optimierungen an...";
+        StatusMessage = $"Applying {selected.Count} selected optimization(s)...";
 
         var result = await Task.Run(() => _service.Engine.Apply(selected, new ApplyOptions(
             CreateRestorePoint: true,
             StopOnError: false
         )));
 
-        StatusMessage = $"Fertig: {result.Applied} angewendet, {result.Skipped} übersprungen, {result.Failed} Fehler.";
+        StatusMessage = $"Completed: {result.Applied} applied, {result.Skipped} skipped, {result.Failed} failed.";
         await DetectAllAsync();
         IsBusy = false;
     }
@@ -177,17 +177,17 @@ public partial class TweaksViewModel : ObservableObject
         var selected = _allItems.Where(i => i.IsSelected).Select(i => i.Id).ToHashSet();
         if (selected.Count == 0)
         {
-            StatusMessage = "Keine Optimierungen zur Rücknahme ausgewählt.";
+            StatusMessage = "No optimizations selected to revert.";
             return;
         }
 
         IsBusy = true;
-        StatusMessage = "Nehme ausgewählte Optimierungen aus letzter Sitzung zurück...";
+        StatusMessage = "Reverting selected optimizations from previous session...";
 
         var lastSessionFile = _service.JournalStore.EnumerateSessionFiles().LastOrDefault();
         if (lastSessionFile == null)
         {
-            StatusMessage = "Keine vorherige Sitzung im Journal gefunden.";
+            StatusMessage = "No previous session found in journal.";
             IsBusy = false;
             return;
         }
@@ -198,7 +198,7 @@ public partial class TweaksViewModel : ObservableObject
             _service.Engine.Revert(session, _service.Catalog.Tweaks);
         });
 
-        StatusMessage = "Ausgewählte Optimierungen wurden zurückgesetzt.";
+        StatusMessage = "Selected optimizations have been reverted.";
         await DetectAllAsync();
         IsBusy = false;
     }

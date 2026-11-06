@@ -12,8 +12,8 @@ public partial class SessionItemViewModel : ObservableObject
     public JournalSession Session { get; }
     public string FilePath { get; }
 
-    public string FormattedTime => Session.StartedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss");
-    public string Details => $"{Session.Tweaks.Count} Optimierungen · OS Build {Session.OsBuild}";
+    public string FormattedTime => Session.StartedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
+    public string Details => $"{Session.Tweaks.Count} optimizations · OS Build {Session.OsBuild}";
 
     public SessionItemViewModel(JournalSession session, string filePath)
     {
@@ -57,11 +57,11 @@ public partial class HistoryViewModel : ObservableObject
             }
             catch
             {
-                // Unlesbare Journal-Dateien überspringen
+                // Skip unreadable journal files
             }
         }
 
-        StatusMessage = $"{Sessions.Count} Sitzung(en) im Verlauf gefunden.";
+        StatusMessage = $"{Sessions.Count} session(s) found in history.";
         IsBusy = false;
     }
 
@@ -71,19 +71,19 @@ public partial class HistoryViewModel : ObservableObject
         var target = sessionVm ?? SelectedSession;
         if (target == null)
         {
-            StatusMessage = "Bitte wählen Sie eine Sitzung zum Zurücksetzen aus.";
+            StatusMessage = "Please select a session to rollback.";
             return;
         }
 
         IsBusy = true;
-        StatusMessage = $"Setze Sitzung vom {target.FormattedTime} zurück...";
+        StatusMessage = $"Reverting session from {target.FormattedTime}...";
 
         await Task.Run(() =>
         {
             _service.Engine.Revert(target.Session, _service.Catalog.Tweaks);
         });
 
-        StatusMessage = "Sitzung erfolgreich zurückgesetzt!";
+        StatusMessage = "Session reverted successfully!";
         Refresh();
         IsBusy = false;
     }
@@ -97,7 +97,7 @@ public partial class HistoryViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            StatusMessage = $"Fehler beim Öffnen der Systemwiederherstellung: {ex.Message}";
+            StatusMessage = $"Error opening System Restore: {ex.Message}";
         }
     }
 }

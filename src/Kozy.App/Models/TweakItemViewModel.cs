@@ -8,8 +8,8 @@ public partial class TweakItemViewModel : ObservableObject
     public TweakManifest Manifest { get; }
 
     public string Id => Manifest.Id;
-    public string Name => Manifest.Name.De;
-    public string Description => Manifest.Description.De;
+    public string Name => Manifest.Name.En ?? Manifest.Name.De;
+    public string Description => Manifest.Description.En ?? Manifest.Description.De;
     public string Category => Manifest.Category;
     public Risk Risk => Manifest.Risk;
     public Tier Tier => Manifest.Tier;
@@ -18,11 +18,11 @@ public partial class TweakItemViewModel : ObservableObject
 
     public string RiskLabel => Risk switch
     {
-        Risk.Safe => "Sicher",
-        Risk.Moderate => "Ausgewogen",
-        Risk.Advanced => "Erweitert",
-        Risk.Experimental => "Experimentell",
-        _ => "Unbekannt",
+        Risk.Safe => "Safe",
+        Risk.Moderate => "Moderate",
+        Risk.Advanced => "Advanced",
+        Risk.Experimental => "Experimental",
+        _ => "Unknown",
     };
 
     public string RiskBadgeColor => Risk switch

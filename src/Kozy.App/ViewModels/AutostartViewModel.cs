@@ -12,7 +12,7 @@ public partial class AutostartItemViewModel : ObservableObject
 
     public string Name => Entry.Name;
     public string Command => Entry.Command;
-    public string ScopeString => Entry.Scope == StartupScope.CurrentUser ? "Aktueller Benutzer" : "Gesamtes System";
+    public string ScopeString => Entry.Scope == StartupScope.CurrentUser ? "Current User" : "All Users";
 
     [ObservableProperty]
     private bool _isEnabled;
@@ -56,13 +56,13 @@ public partial class AutostartViewModel : ObservableObject
                 if (e.PropertyName == nameof(AutostartItemViewModel.IsEnabled))
                 {
                     _service.StartupManager.SetEnabled(vm.Entry.Scope, vm.Name, vm.IsEnabled);
-                    StatusMessage = $"Autostart für '{vm.Name}' {(vm.IsEnabled ? "aktiviert" : "deaktiviert")}.";
+                    StatusMessage = $"Startup for '{vm.Name}' {(vm.IsEnabled ? "enabled" : "disabled")}.";
                 }
             };
             Items.Add(vm);
         }
 
-        StatusMessage = $"{Items.Count} Autostart-Einträge geladen.";
+        StatusMessage = $"{Items.Count} startup item(s) loaded.";
         IsBusy = false;
     }
 }

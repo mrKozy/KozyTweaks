@@ -15,8 +15,8 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Grid.Row="0" Text="System-Cleaner" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
-        <TextBlock Grid.Row="0" Text="Sichere Bereinigung von temporären Dateien, Shader-Caches und Update-Rückständen." 
+        <TextBlock Grid.Row="0" Text="System Cleaner" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
+        <TextBlock Grid.Row="0" Text="Safely remove temporary files, shader caches, and leftover update data." 
                    Foreground="#8A8886" Margin="0,32,0,16" />
 
         <!-- Status & Action Card -->
@@ -28,14 +28,24 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Freigebbarer Speicherplatz:" Foreground="#8A8886" FontSize="12"/>
+                    <TextBlock Text="Reclaimable Space:" Foreground="#8A8886" FontSize="12"/>
                     <TextBlock Text="{Binding TotalSizeString}" FontSize="28" FontWeight="Bold" Foreground="#57D98D" Margin="0,2,0,4"/>
                     <TextBlock Text="{Binding StatusMessage}" Foreground="#AAAAAA" FontSize="13"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <ui:Button Content="Neu scannen" Command="{Binding ScanCommand}" Margin="0,0,10,0"/>
-                    <ui:Button Content="Jetzt bereinigen" Appearance="Primary" Command="{Binding CleanCommand}"/>
+                    <ui:Button Command="{Binding ScanCommand}" Margin="0,0,10,0">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="ArrowSync24" FontSize="16" Margin="0,0,8,0"/>
+                            <TextBlock Text="Rescan" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ui:Button>
+                    <ui:Button Appearance="Primary" Command="{Binding CleanCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="Broom24" FontSize="16" Margin="0,0,8,0"/>
+                            <TextBlock Text="Clean Now" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ui:Button>
                 </StackPanel>
             </Grid>
         </ui:Card>

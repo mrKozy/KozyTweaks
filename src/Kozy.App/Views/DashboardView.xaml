@@ -10,45 +10,73 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="24" MaxWidth="1000" HorizontalAlignment="Stretch">
             <!-- Header -->
-            <TextBlock Text="System-Übersicht" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,6" />
-            <TextBlock Text="Hardware-Status und Schnell-Optimierungen auf einen Blick." Foreground="#8A8886" Margin="0,0,0,24" />
+            <TextBlock Text="System Overview" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,6" />
+            <TextBlock Text="Hardware status and quick optimizations at a glance." Foreground="#8A8886" Margin="0,0,0,24" />
 
             <!-- System Info Cards Grid -->
             <UniformGrid Columns="2" Margin="0,0,0,20">
                 <!-- OS Card -->
                 <ui:Card Margin="0,0,10,12" Padding="16">
-                    <StackPanel>
-                        <TextBlock Text="Betriebssystem" FontWeight="SemiBold" Foreground="#8A8886" FontSize="12" Margin="0,0,0,4"/>
-                        <TextBlock Text="{Binding OsName}" FontSize="16" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Text="{Binding OsBuildString}" FontSize="12" Foreground="#8A8886" Margin="0,2,0,0"/>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Operating System" FontWeight="SemiBold" Foreground="#8A8886" FontSize="12" Margin="0,0,0,4"/>
+                            <TextBlock Text="{Binding OsName}" FontSize="16" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding OsBuildString}" FontSize="12" Foreground="#8A8886" Margin="0,2,0,0"/>
+                        </StackPanel>
+                        <ui:SymbolIcon Grid.Column="1" Symbol="Desktop24" FontSize="24" Foreground="#3A3A3A" VerticalAlignment="Top"/>
+                    </Grid>
                 </ui:Card>
 
                 <!-- Device Type -->
                 <ui:Card Margin="10,0,0,12" Padding="16">
-                    <StackPanel>
-                        <TextBlock Text="Gerätetyp" FontWeight="SemiBold" Foreground="#8A8886" FontSize="12" Margin="0,0,0,4"/>
-                        <TextBlock Text="{Binding DeviceTypeString}" FontSize="16" FontWeight="SemiBold"/>
-                        <TextBlock Text="Vollständig kompatibel mit allen Tweaks" FontSize="12" Foreground="#107C41" Margin="0,2,0,0"/>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Device Type" FontWeight="SemiBold" Foreground="#8A8886" FontSize="12" Margin="0,0,0,4"/>
+                            <TextBlock Text="{Binding DeviceTypeString}" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="Fully compatible with all tweaks" FontSize="12" Foreground="#57D98D" Margin="0,2,0,0"/>
+                        </StackPanel>
+                        <ui:SymbolIcon Grid.Column="1" Symbol="DeveloperBoard24" FontSize="24" Foreground="#3A3A3A" VerticalAlignment="Top"/>
+                    </Grid>
                 </ui:Card>
 
                 <!-- CPU Card -->
                 <ui:Card Margin="0,0,10,12" Padding="16">
-                    <StackPanel>
-                        <TextBlock Text="Prozessor (CPU)" FontWeight="SemiBold" Foreground="#8A8886" FontSize="12" Margin="0,0,0,4"/>
-                        <TextBlock Text="{Binding CpuName}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Text="{Binding RamString}" FontSize="12" Foreground="#8A8886" Margin="0,2,0,0"/>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Processor (CPU)" FontWeight="SemiBold" Foreground="#8A8886" FontSize="12" Margin="0,0,0,4"/>
+                            <TextBlock Text="{Binding CpuName}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding RamString}" FontSize="12" Foreground="#8A8886" Margin="0,2,0,0"/>
+                        </StackPanel>
+                        <ui:SymbolIcon Grid.Column="1" Symbol="Flash24" FontSize="24" Foreground="#3A3A3A" VerticalAlignment="Top"/>
+                    </Grid>
                 </ui:Card>
 
                 <!-- GPU Card -->
                 <ui:Card Margin="10,0,0,12" Padding="16">
-                    <StackPanel>
-                        <TextBlock Text="Grafikkarte (GPU)" FontWeight="SemiBold" Foreground="#8A8886" FontSize="12" Margin="0,0,0,4"/>
-                        <TextBlock Text="{Binding GpuName}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Text="Treiber- und Display-Optimierungen verfügbar" FontSize="12" Foreground="#8A8886" Margin="0,2,0,0"/>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Graphics Card (GPU)" FontWeight="SemiBold" Foreground="#8A8886" FontSize="12" Margin="0,0,0,4"/>
+                            <TextBlock Text="{Binding GpuName}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="Driver and display optimizations available" FontSize="12" Foreground="#8A8886" Margin="0,2,0,0"/>
+                        </StackPanel>
+                        <ui:SymbolIcon Grid.Column="1" Symbol="TopSpeed24" FontSize="24" Foreground="#3A3A3A" VerticalAlignment="Top"/>
+                    </Grid>
                 </ui:Card>
             </UniformGrid>
 
@@ -60,38 +88,51 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="Optimierungs-Status" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBlock Text="Optimization Status" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
                         <TextBlock Text="{Binding StatusMessage}" Foreground="#CCCCCC" FontSize="13" />
                     </StackPanel>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                        <ui:Button Content="Aktualisieren" Command="{Binding RefreshStatusCommand}" Margin="0,0,10,0"/>
+                        <ui:Button Command="{Binding RefreshStatusCommand}" Margin="0,0,10,0">
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Symbol="ArrowSync24" FontSize="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Refresh" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ui:Button>
                     </StackPanel>
                 </Grid>
             </ui:Card>
 
             <!-- Quick Actions Section -->
-            <TextBlock Text="Schnellaktionen" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,12" />
+            <TextBlock Text="Quick Actions" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,12" />
             <UniformGrid Columns="2" Margin="0,0,0,16">
                 <ui:Card Margin="0,0,10,0" Padding="16">
                     <StackPanel>
-                        <TextBlock Text="Sicheres Preset anwenden" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                        <TextBlock Text="Aktiviert alle risikoarmen Tweaks für sofort verbesserte Latenz und Bildraten." 
+                        <TextBlock Text="Apply Safe Preset" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                        <TextBlock Text="Enables all low-risk tweaks for instantly reduced latency and smoother framerates." 
                                    Foreground="#8A8886" TextWrapping="Wrap" Margin="0,0,0,16" MinHeight="36"/>
-                        <ui:Button Content="Sicheres Preset aktivieren" 
-                                   Appearance="Primary"
+                        <ui:Button Appearance="Primary"
                                    Command="{Binding ApplySafePresetCommand}" 
-                                   HorizontalAlignment="Left" />
+                                   HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Symbol="Flash24" FontSize="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Enable Safe Preset" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ui:Button>
                     </StackPanel>
                 </ui:Card>
 
                 <ui:Card Margin="10,0,0,0" Padding="16">
                     <StackPanel>
-                        <TextBlock Text="Wiederherstellungspunkt" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                        <TextBlock Text="Erstellt manuell einen Windows Systemwiederherstellungspunkt vor tiefgreifenden Änderungen." 
+                        <TextBlock Text="Create Restore Point" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                        <TextBlock Text="Manually creates a Windows System Restore Point before making deep system changes." 
                                    Foreground="#8A8886" TextWrapping="Wrap" Margin="0,0,0,16" MinHeight="36"/>
-                        <ui:Button Content="Punkt jetzt erstellen" 
-                                   Command="{Binding CreateRestorePointCommand}" 
-                                   HorizontalAlignment="Left" />
+                        <ui:Button Command="{Binding CreateRestorePointCommand}" 
+                                   HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Symbol="History24" FontSize="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Create Point Now" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ui:Button>
                     </StackPanel>
                 </ui:Card>
             </UniformGrid>
