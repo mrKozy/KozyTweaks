@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "latency.bcd-disable-dynamic-tick",
+  "version": 1,
+  "name": {
+    "de": "Dynamischen Timer-Tick deaktivieren",
+    "en": "Disable Dynamic Ticks"
+  },
+  "description": {
+    "de": "Deaktiviert dynamische Timer-Ticks im BCD für konstante Timer-Frequenz (erfordert Neustart).",
+    "en": "Disables dynamic tick in BCD for constant timer resolution (requires reboot)."
+  },
+  "category": "latency",
+  "tier": "extreme",
+  "risk": "experimental",
+  "requiresReboot": true,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "latency",
+  "actions": [
+    {
+      "type": "bcdedit.set",
+      "element": "disabledynamictick",
+      "value": "yes"
+    }
+  ]
+}

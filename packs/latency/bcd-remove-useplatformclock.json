@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "latency.bcd-remove-useplatformclock",
+  "version": 1,
+  "name": {
+    "de": "HPET Platform Clock entfernen",
+    "en": "Remove Forced HPET Platform Clock"
+  },
+  "description": {
+    "de": "Entfernt erzwungenes HPET (useplatformclock) aus den Boot-Konfigurationsdaten (BCD) zur Verringerung von Timer-Latenz.",
+    "en": "Deletes useplatformclock from BCD to allow modern TSC hardware timers and reduce latency."
+  },
+  "category": "latency",
+  "tier": "pro",
+  "risk": "safe",
+  "requiresReboot": true,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "latency",
+  "actions": [
+    {
+      "type": "bcdedit.delete",
+      "element": "useplatformclock"
+    }
+  ]
+}

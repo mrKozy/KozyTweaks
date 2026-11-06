@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "power.pcie-aspm-off",
+  "version": 1,
+  "name": {
+    "de": "PCIe Link State Power Management deaktivieren",
+    "en": "Disable PCIe Link State Power Management"
+  },
+  "description": {
+    "de": "Verhindert Latenzen durch PCIe-Stromsparmodi für Grafikkarte und NVMe-Laufwerke.",
+    "en": "Disables PCIe ASPM power saving to eliminate wake-up latency for GPU and NVMe drives."
+  },
+  "category": "power",
+  "tier": "pro",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "powercfg.value",
+      "scheme": "ACTIVE",
+      "subgroup": "501a4d13-42af-4429-9fd1-a8218c268e20",
+      "setting": "ee12f906-d277-404b-b6da-e5fa1a576df5",
+      "ac": 0
+    }
+  ]
+}

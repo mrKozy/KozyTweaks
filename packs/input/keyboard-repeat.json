@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "input.keyboard-repeat",
+  "version": 1,
+  "name": {
+    "de": "Maximale Tastatur-Wiederholrate",
+    "en": "Maximum Keyboard Repeat Rate"
+  },
+  "description": {
+    "de": "Setzt die Tastaturverzögerung auf Minimum (0) und die Wiederholrate auf Maximum (31).",
+    "en": "Sets keyboard repeat delay to minimum and repeat rate to maximum for fastest response."
+  },
+  "category": "input",
+  "tier": "pro",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Control Panel\\Keyboard",
+      "name": "KeyboardDelay",
+      "kind": "String",
+      "value": "0"
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Control Panel\\Keyboard",
+      "name": "KeyboardSpeed",
+      "kind": "String",
+      "value": "31"
+    }
+  ]
+}

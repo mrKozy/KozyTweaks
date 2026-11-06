@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "debloat.appx-basic",
+  "version": 1,
+  "name": {
+    "de": "Standard Bloatware-Apps entfernen",
+    "en": "Remove Default Bloatware Apps"
+  },
+  "description": {
+    "de": "Entfernt vorinstallierte Apps wie BingNews, Wetter, FeedbackHub und Solitaire für alle Benutzer.",
+    "en": "Removes pre-installed apps including BingNews, Weather, FeedbackHub, and Solitaire."
+  },
+  "category": "debloat",
+  "tier": "basic",
+  "risk": "moderate",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": true,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "appx.remove",
+      "names": [
+        "Microsoft.BingNews",
+        "Microsoft.BingWeather",
+        "Microsoft.GetHelp",
+        "Microsoft.Getstarted",
+        "Microsoft.MicrosoftSolitaireCollection",
+        "Microsoft.WindowsFeedbackHub",
+        "Microsoft.MicrosoftOfficeHub",
+        "Microsoft.YourPhone"
+      ],
+      "allUsers": true
+    }
+  ]
+}

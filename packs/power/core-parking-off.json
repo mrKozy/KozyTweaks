@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "power.core-parking-off",
+  "version": 1,
+  "name": {
+    "de": "CPU Core-Parking deaktivieren",
+    "en": "Disable CPU Core Parking"
+  },
+  "description": {
+    "de": "Hält alle CPU-Kerne aktiv, um Mikroruckler beim Aufwecken schlafender Kerne zu verhindern.",
+    "en": "Keeps all CPU cores active to prevent micro-stutter from unparking cores."
+  },
+  "category": "power",
+  "tier": "pro",
+  "risk": "moderate",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "frametime",
+  "actions": [
+    {
+      "type": "powercfg.value",
+      "scheme": "ACTIVE",
+      "subgroup": "54533251-82be-4824-96c1-47b60b740d00",
+      "setting": "0cc5b647-c1df-4637-891a-dec35c318583",
+      "ac": 100
+    }
+  ]
+}

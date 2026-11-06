@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "network.dns-cloudflare",
+  "version": 1,
+  "name": {
+    "de": "Cloudflare DNS (1.1.1.1) setzen",
+    "en": "Set Cloudflare DNS (1.1.1.1)"
+  },
+  "description": {
+    "de": "Konfiguriert schnelle, sichere Cloudflare-DNS-Server (1.1.1.1 und 1.0.0.1) auf aktiven Netzwerkadaptern.",
+    "en": "Configures fast and private Cloudflare DNS servers (1.1.1.1 and 1.0.0.1) on active network adapters."
+  },
+  "category": "network",
+  "tier": "basic",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "network",
+  "actions": [
+    {
+      "type": "dns.set",
+      "servers": ["1.1.1.1", "1.0.0.1"]
+    }
+  ]
+}

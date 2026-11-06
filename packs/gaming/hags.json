@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "gaming.hags",
+  "version": 1,
+  "name": {
+    "de": "Hardware-beschleunigte GPU-Planung (HAGS)",
+    "en": "Hardware-Accelerated GPU Scheduling (HAGS)"
+  },
+  "description": {
+    "de": "Aktiviert hardwarebeschleunigte GPU-Planung zur Reduzierung der Latenz (erfordert unterstützte GPU und Neustart).",
+    "en": "Enables hardware-accelerated GPU scheduling to reduce latency (requires supported GPU and restart)."
+  },
+  "category": "gaming",
+  "tier": "pro",
+  "risk": "experimental",
+  "requiresReboot": true,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "frametime",
+  "actions": [
+    {
+      "type": "registry.set",
+      "hive": "HKLM",
+      "path": "SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers",
+      "name": "HwSchMode",
+      "kind": "DWord",
+      "value": 2
+    }
+  ]
+}

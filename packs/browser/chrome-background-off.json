@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "browser.chrome-background-off",
+  "version": 1,
+  "name": {
+    "de": "Hintergrund-Ausführung von Google Chrome deaktivieren",
+    "en": "Disable Google Chrome Background Mode"
+  },
+  "description": {
+    "de": "Verhindert, dass Google Chrome nach dem Schließen im Hintergrund RAM und CPU verbraucht.",
+    "en": "Prevents Google Chrome from running background processes when closed."
+  },
+  "category": "browser",
+  "tier": "pro",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "registry.set",
+      "hive": "HKLM",
+      "path": "SOFTWARE\\Policies\\Google\\Chrome",
+      "name": "BackgroundModeEnabled",
+      "kind": "DWord",
+      "value": 0
+    }
+  ]
+}

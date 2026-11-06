@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "power.hibernate-off",
+  "version": 1,
+  "name": {
+    "de": "Ruhezustand deaktivieren",
+    "en": "Disable Hibernation"
+  },
+  "description": {
+    "de": "Deaktiviert den Ruhezustand und gibt mehrere Gigabyte Festplattenspeicher (hiberfil.sys) frei.",
+    "en": "Disables Windows hibernation and reclaims gigabytes of disk space."
+  },
+  "category": "power",
+  "tier": "extreme",
+  "risk": "moderate",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "powercfg.hibernate",
+      "enabled": false
+    }
+  ]
+}

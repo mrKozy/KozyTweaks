@@ -1,0 +1,41 @@
+<Application x:Class="Kozy.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:vm="clr-namespace:Kozy.App.ViewModels"
+             xmlns:views="clr-namespace:Kozy.App.Views"
+             xmlns:local="clr-namespace:Kozy.App"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Wpf.Ui;component/Resources/Theme/Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Wpf.Ui;component/Resources/Wpf.Ui.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+            <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+                <views:DashboardView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:TweaksViewModel}">
+                <views:TweaksView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CleanerViewModel}">
+                <views:CleanerView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AutostartViewModel}">
+                <views:AutostartView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:BenchmarkViewModel}">
+                <views:BenchmarkView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:HistoryViewModel}">
+                <views:HistoryView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+                <views:SettingsView />
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

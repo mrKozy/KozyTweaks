@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "input.mouse-accel-off",
+  "version": 1,
+  "name": {
+    "de": "Mausbeschleunigung deaktivieren",
+    "en": "Disable Mouse Acceleration"
+  },
+  "description": {
+    "de": "Schaltet Mausbeschleunigung für 1:1 präzise Mauseingabe ab.",
+    "en": "Disables mouse acceleration for consistent 1:1 mouse input."
+  },
+  "category": "input",
+  "tier": "basic",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "latency",
+  "actions": [
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Control Panel\\Mouse",
+      "name": "MouseSpeed",
+      "kind": "String",
+      "value": "0"
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Control Panel\\Mouse",
+      "name": "MouseThreshold1",
+      "kind": "String",
+      "value": "0"
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Control Panel\\Mouse",
+      "name": "MouseThreshold2",
+      "kind": "String",
+      "value": "0"
+    },
+    {
+      "type": "spi.mouse",
+      "speed": 0,
+      "threshold1": 0,
+      "threshold2": 0
+    }
+  ]
+}

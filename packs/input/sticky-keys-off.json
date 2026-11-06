@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "input.sticky-keys-off",
+  "version": 1,
+  "name": {
+    "de": "Einrastfunktion & Filtertasten deaktivieren",
+    "en": "Disable Sticky and Toggle Keys"
+  },
+  "description": {
+    "de": "Verhindert versehentliches Aufpoppen der Einrastfunktion und Tastatur-Verzögerungen beim Gaming.",
+    "en": "Prevents accidental popup dialogues for sticky/toggle keys during gameplay."
+  },
+  "category": "input",
+  "tier": "basic",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Control Panel\\Accessibility\\StickyKeys",
+      "name": "Flags",
+      "kind": "String",
+      "value": "506"
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Control Panel\\Accessibility\\ToggleKeys",
+      "name": "Flags",
+      "kind": "String",
+      "value": "58"
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Control Panel\\Accessibility\\Keyboard Response",
+      "name": "Flags",
+      "kind": "String",
+      "value": "122"
+    }
+  ]
+}

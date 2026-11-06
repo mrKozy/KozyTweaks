@@ -1,0 +1,112 @@
+<ui:FluentWindow x:Class="Kozy.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:vm="clr-namespace:Kozy.App.ViewModels"
+        mc:Ignorable="d"
+        Title="kozy - Windows Optimizer" 
+        Height="760" Width="1160"
+        MinHeight="600" MinWidth="960"
+        WindowStartupLocation="CenterScreen"
+        Background="#181818">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Modern TitleBar -->
+        <ui:TitleBar Grid.Row="0" Title="kozy - Windows Optimizer" />
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Sidebar Navigation -->
+            <Border Grid.Column="0" Background="#141414" BorderBrush="#262626" BorderThickness="0,0,1,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Branding Header -->
+                    <StackPanel Grid.Row="0" Margin="20,16,20,24">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="kozy" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF" Margin="0,0,8,0" />
+                            <Border Background="#107C41" CornerRadius="4" Padding="6,2" VerticalAlignment="Center">
+                                <TextBlock Text="FREE" FontSize="10" FontWeight="Bold" Foreground="#FFFFFF" />
+                            </Border>
+                        </StackPanel>
+                        <TextBlock Text="Windows Performance Tool" FontSize="11" Foreground="#666666" Margin="0,2,0,0"/>
+                    </StackPanel>
+
+                    <!-- Nav Items -->
+                    <StackPanel Grid.Row="1" Margin="12,0,12,0">
+                        <RadioButton x:Name="NavDashboard" 
+                                     Content="🏠  Übersicht" 
+                                     Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Height="40" Margin="0,2" Padding="12,0" 
+                                     HorizontalContentAlignment="Left"
+                                     IsChecked="True"
+                                     Click="NavButton_Click" Tag="Dashboard"/>
+
+                        <RadioButton x:Name="NavTweaks" 
+                                     Content="⚡  Optimierungen" 
+                                     Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Height="40" Margin="0,2" Padding="12,0" 
+                                     HorizontalContentAlignment="Left"
+                                     Click="NavButton_Click" Tag="Tweaks"/>
+
+                        <RadioButton x:Name="NavCleaner" 
+                                     Content="🧹  System-Cleaner" 
+                                     Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Height="40" Margin="0,2" Padding="12,0" 
+                                     HorizontalContentAlignment="Left"
+                                     Click="NavButton_Click" Tag="Cleaner"/>
+
+                        <RadioButton x:Name="NavAutostart" 
+                                     Content="🚀  Autostart" 
+                                     Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Height="40" Margin="0,2" Padding="12,0" 
+                                     HorizontalContentAlignment="Left"
+                                     Click="NavButton_Click" Tag="Autostart"/>
+
+                        <RadioButton x:Name="NavBenchmark" 
+                                     Content="📊  Benchmark" 
+                                     Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Height="40" Margin="0,2" Padding="12,0" 
+                                     HorizontalContentAlignment="Left"
+                                     Click="NavButton_Click" Tag="Benchmark"/>
+
+                        <RadioButton x:Name="NavHistory" 
+                                     Content="🕒  Verlauf &amp; Rollback" 
+                                     Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Height="40" Margin="0,2" Padding="12,0" 
+                                     HorizontalContentAlignment="Left"
+                                     Click="NavButton_Click" Tag="History"/>
+                    </StackPanel>
+
+                    <!-- Footer Settings -->
+                    <StackPanel Grid.Row="2" Margin="12,0,12,16">
+                        <Separator Background="#262626" Margin="0,0,0,12"/>
+                        <RadioButton x:Name="NavSettings" 
+                                     Content="⚙️  Einstellungen" 
+                                     Style="{StaticResource {x:Type ToggleButton}}" 
+                                     Height="40" Padding="12,0" 
+                                     HorizontalContentAlignment="Left"
+                                     Click="NavButton_Click" Tag="Settings"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Main Content Area -->
+            <ContentControl Grid.Column="1" Content="{Binding CurrentView}" />
+        </Grid>
+    </Grid>
+</ui:FluentWindow>

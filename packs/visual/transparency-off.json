@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "visual.transparency-off",
+  "version": 1,
+  "name": {
+    "de": "Transparenzeffekte deaktivieren",
+    "en": "Disable Transparency Effects"
+  },
+  "description": {
+    "de": "Schaltet Fluent/Mica-Transparenz in Windows aus und entlastet Desktop Window Manager (DWM).",
+    "en": "Disables transparency effects to reduce DWM GPU and memory overhead."
+  },
+  "category": "visual",
+  "tier": "basic",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "frametime",
+  "actions": [
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+      "name": "EnableTransparency",
+      "kind": "DWord",
+      "value": 0
+    }
+  ]
+}

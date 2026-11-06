@@ -1,0 +1,59 @@
+<UserControl x:Class="Kozy.App.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:vm="clr-namespace:Kozy.App.ViewModels"
+             d:DataContext="{d:DesignInstance vm:SettingsViewModel}"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="24" MaxWidth="800" HorizontalAlignment="Stretch">
+            <!-- Header -->
+            <TextBlock Text="Einstellungen &amp; Info" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,4" />
+            <TextBlock Text="Projekt-Informationen und Datenordner." Foreground="#8A8886" Margin="0,0,0,24" />
+
+            <!-- About Card -->
+            <ui:Card Margin="0,0,0,16" Padding="20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="kozy - Windows Optimizer" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBlock Text="{Binding AppVersion}" Foreground="#57D98D" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBlock Text="100 % Free &amp; Open Source Windows Optimierungstool. Sicher, transparent und reversibel." Foreground="#8A8886" FontSize="12"/>
+                    </StackPanel>
+                    <ui:Button Grid.Column="1" Content="GitHub Repository" Appearance="Primary" Command="{Binding OpenGitHubCommand}" VerticalAlignment="Center"/>
+                </Grid>
+            </ui:Card>
+
+            <!-- Data & Storage Card -->
+            <ui:Card Margin="0,0,0,16" Padding="20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Lokale Daten &amp; Sitzungs-Journale" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBlock Text="{Binding DataDirectory}" Foreground="#8A8886" FontSize="12" Margin="0,0,0,4"/>
+                        <TextBlock Text="Hier speichert kozy Sitzungs-Protokolle, Backups und Logs zur vollständigen Nachvollziehbarkeit." Foreground="#AAAAAA" FontSize="12"/>
+                    </StackPanel>
+                    <ui:Button Grid.Column="1" Content="Ordner öffnen" Command="{Binding OpenDataFolderCommand}" VerticalAlignment="Center"/>
+                </Grid>
+            </ui:Card>
+
+            <!-- Safety Guarantee Card -->
+            <ui:Card Margin="0,0,0,16" Padding="20">
+                <StackPanel>
+                    <TextBlock Text="Sicherheits-Garantie" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBlock Text="• Vor Optimierungen wird automatisch ein Windows-Wiederherstellungspunkt angelegt." Foreground="#CCCCCC" Margin="0,0,0,4"/>
+                    <TextBlock Text="• Alle Änderungen werden im Journal erfasst und können vollständig rückgängig gemacht werden." Foreground="#CCCCCC" Margin="0,0,0,4"/>
+                    <TextBlock Text="• Keine bösartigen Kerneltreiber, keine Spiele-Eingriffe und keine Anti-Cheat-Kollisionen." Foreground="#CCCCCC"/>
+                </StackPanel>
+            </ui:Card>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

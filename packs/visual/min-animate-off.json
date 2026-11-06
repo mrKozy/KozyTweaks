@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "visual.min-animate-off",
+  "version": 1,
+  "name": {
+    "de": "Fenster-Animationen beim Minimieren deaktivieren",
+    "en": "Disable Window Minimize/Maximize Animations"
+  },
+  "description": {
+    "de": "Entfernt Fenster-Animationen für spürbar schnellere Fensterrückmeldungen.",
+    "en": "Removes window minimize and maximize animations for snappier window response."
+  },
+  "category": "visual",
+  "tier": "basic",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "latency",
+  "actions": [
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Control Panel\\Desktop\\WindowMetrics",
+      "name": "MinAnimate",
+      "kind": "String",
+      "value": "0"
+    }
+  ]
+}

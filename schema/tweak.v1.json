@@ -1,0 +1,185 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "kozy Tweak Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "version", "name", "description", "category", "tier", "actions"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z]+(\\.[a-z0-9-]+)+$" },
+    "version": { "type": "integer", "minimum": 1 },
+    "name": { "$ref": "#/definitions/localized" },
+    "description": { "$ref": "#/definitions/localized" },
+    "category": { "type": "string" },
+    "tier": { "enum": ["basic", "pro", "extreme", "precision"] },
+    "risk": { "enum": ["safe", "moderate", "advanced", "experimental"] },
+    "requiresReboot": { "type": "boolean" },
+    "supports": { "$ref": "#/definitions/supports" },
+    "conflictsWith": { "type": "array", "items": { "type": "string" } },
+    "dependsOn": { "type": "array", "items": { "type": "string" } },
+    "irreversible": { "type": "boolean" },
+    "benchmarkHint": { "enum": ["frametime", "latency", "network", "none"] },
+    "actions": { "type": "array", "minItems": 1, "items": { "oneOf": [
+      { "$ref": "#/definitions/registrySet" },
+      { "$ref": "#/definitions/registryDelete" },
+      { "$ref": "#/definitions/serviceConfig" },
+      { "$ref": "#/definitions/taskDisable" },
+      { "$ref": "#/definitions/powercfgValue" },
+      { "$ref": "#/definitions/powercfgScheme" },
+      { "$ref": "#/definitions/powercfgHibernate" },
+      { "$ref": "#/definitions/bcdeditSet" },
+      { "$ref": "#/definitions/bcdeditDelete" },
+      { "$ref": "#/definitions/dnsSet" },
+      { "$ref": "#/definitions/appxRemove" },
+      { "$ref": "#/definitions/cleanerPaths" },
+      { "$ref": "#/definitions/spiMouse" }
+    ] } }
+  },
+  "definitions": {
+    "localized": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["de"],
+      "properties": {
+        "de": { "type": "string" },
+        "en": { "type": "string" }
+      }
+    },
+    "supports": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minBuild"],
+      "properties": {
+        "minBuild": { "type": "integer", "minimum": 1 },
+        "maxBuild": { "type": ["integer", "null"] },
+        "editions": { "type": "array", "items": { "type": "string" } },
+        "deviceClass": { "type": "array", "items": { "enum": ["desktop", "laptop"] } },
+        "gpuVendor": { "enum": ["nvidia", "amd", "intel", null] }
+      }
+    },
+    "registrySet": {
+      "type": "object",
+      "required": ["type", "hive", "path", "name", "kind", "value"],
+      "properties": {
+        "type": { "const": "registry.set" },
+        "hive": { "enum": ["HKCU", "HKLM"] },
+        "path": { "type": "string" },
+        "name": { "type": "string" },
+        "kind": { "enum": ["DWord", "QWord", "String", "ExpandString", "Binary", "MultiString"] },
+        "value": {},
+        "view": { "enum": [32, 64] }
+      }
+    },
+    "registryDelete": {
+      "type": "object",
+      "required": ["type", "hive", "path", "name"],
+      "properties": {
+        "type": { "const": "registry.delete" },
+        "hive": { "enum": ["HKCU", "HKLM"] },
+        "path": { "type": "string" },
+        "name": { "type": "string" },
+        "view": { "enum": [32, 64] }
+      }
+    },
+    "serviceConfig": {
+      "type": "object",
+      "required": ["type", "name", "startMode"],
+      "properties": {
+        "type": { "const": "service.config" },
+        "name": { "type": "string" },
+        "startMode": { "enum": ["auto", "manual", "disabled"] },
+        "stop": { "type": "boolean" }
+      }
+    },
+    "taskDisable": {
+      "type": "object",
+      "required": ["type", "path"],
+      "properties": {
+        "type": { "const": "task.disable" },
+        "path": { "type": "string" }
+      }
+    },
+    "powercfgValue": {
+      "type": "object",
+      "required": ["type", "subgroup", "setting", "ac"],
+      "properties": {
+        "type": { "const": "powercfg.value" },
+        "scheme": { "type": "string" },
+        "subgroup": { "type": "string" },
+        "setting": { "type": "string" },
+        "ac": { "type": "integer" },
+        "dc": { "type": ["integer", "null"] }
+      }
+    },
+    "powercfgScheme": {
+      "type": "object",
+      "required": ["type", "op"],
+      "properties": {
+        "type": { "const": "powercfg.scheme" },
+        "op": { "enum": ["duplicate", "setactive"] },
+        "sourceGuid": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] }
+      }
+    },
+    "powercfgHibernate": {
+      "type": "object",
+      "required": ["type", "enabled"],
+      "properties": {
+        "type": { "const": "powercfg.hibernate" },
+        "enabled": { "type": "boolean" }
+      }
+    },
+    "bcdeditSet": {
+      "type": "object",
+      "required": ["type", "element", "value"],
+      "properties": {
+        "type": { "const": "bcdedit.set" },
+        "element": { "type": "string" },
+        "value": { "type": "string" }
+      }
+    },
+    "bcdeditDelete": {
+      "type": "object",
+      "required": ["type", "element"],
+      "properties": {
+        "type": { "const": "bcdedit.delete" },
+        "element": { "type": "string" }
+      }
+    },
+    "dnsSet": {
+      "type": "object",
+      "required": ["type", "servers"],
+      "properties": {
+        "type": { "const": "dns.set" },
+        "servers": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "appxRemove": {
+      "type": "object",
+      "required": ["type", "names"],
+      "properties": {
+        "type": { "const": "appx.remove" },
+        "names": { "type": "array", "items": { "type": "string" } },
+        "allUsers": { "type": "boolean" }
+      }
+    },
+    "cleanerPaths": {
+      "type": "object",
+      "required": ["type", "targets"],
+      "properties": {
+        "type": { "const": "cleaner.paths" },
+        "targets": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "spiMouse": {
+      "type": "object",
+      "required": ["type", "speed", "threshold1", "threshold2"],
+      "properties": {
+        "type": { "const": "spi.mouse" },
+        "speed": { "type": "integer" },
+        "threshold1": { "type": "integer" },
+        "threshold2": { "type": "integer" }
+      }
+    }
+  }
+}

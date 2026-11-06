@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "services.diagtrack-off",
+  "version": 1,
+  "name": {
+    "de": "Diagnose- & Telemetriedienste deaktivieren",
+    "en": "Disable Diagnostics and Telemetry Services"
+  },
+  "description": {
+    "de": "Deaktiviert DiagTrack und WAP-Push-Dienst sowie Telemetrie-Datensammlung.",
+    "en": "Disables DiagTrack and dmwappushservice services along with telemetry data collection."
+  },
+  "category": "services",
+  "tier": "pro",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "service.config",
+      "name": "DiagTrack",
+      "startMode": "disabled",
+      "stop": true
+    },
+    {
+      "type": "service.config",
+      "name": "dmwappushservice",
+      "startMode": "disabled",
+      "stop": true
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKLM",
+      "path": "SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection",
+      "name": "AllowTelemetry",
+      "kind": "DWord",
+      "value": 0
+    }
+  ]
+}

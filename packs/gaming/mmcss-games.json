@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "id": "gaming.mmcss-games",
+  "version": 1,
+  "name": {
+    "de": "Multimedia Class Scheduler (MMCSS) für Spiele",
+    "en": "Multimedia Class Scheduler (MMCSS) for Games"
+  },
+  "description": {
+    "de": "Priorisiert Spieleprozesse und reduziert Netzwerk-Drosselung bei hoher Audio/Video-Aktivität.",
+    "en": "Prioritizes game processes and disables network throttling during multimedia playback."
+  },
+  "category": "gaming",
+  "tier": "pro",
+  "risk": "moderate",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "frametime",
+  "actions": [
+    {
+      "type": "registry.set",
+      "hive": "HKLM",
+      "path": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+      "name": "SystemResponsiveness",
+      "kind": "DWord",
+      "value": 10
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKLM",
+      "path": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+      "name": "NetworkThrottlingIndex",
+      "kind": "DWord",
+      "value": 4294967295
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKLM",
+      "path": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "GPU Priority",
+      "kind": "DWord",
+      "value": 8
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKLM",
+      "path": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "Priority",
+      "kind": "DWord",
+      "value": 6
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKLM",
+      "path": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "Scheduling Category",
+      "kind": "String",
+      "value": "High"
+    },
+    {
+      "type": "registry.set",
+      "hive": "HKLM",
+      "path": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "SFIO Priority",
+      "kind": "String",
+      "value": "High"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "power.fast-startup-off",
+  "version": 1,
+  "name": {
+    "de": "Windows Schnellstart deaktivieren",
+    "en": "Disable Fast Startup"
+  },
+  "description": {
+    "de": "Ermöglicht echten Kaltstart des Kernels, verhindert Treiber-Konflikte und Speicherlecks nach Neustarts.",
+    "en": "Ensures clean kernel reboot, preventing driver state bugs and memory leaks."
+  },
+  "category": "power",
+  "tier": "pro",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "registry.set",
+      "hive": "HKLM",
+      "path": "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power",
+      "name": "HiberbootEnabled",
+      "kind": "DWord",
+      "value": 0
+    }
+  ]
+}

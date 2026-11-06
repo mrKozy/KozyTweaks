@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "tasks.telemetry-off",
+  "version": 1,
+  "name": {
+    "de": "Geplante Telemetrie-Aufgaben deaktivieren",
+    "en": "Disable Scheduled Telemetry Tasks"
+  },
+  "description": {
+    "de": "Deaktiviert periodische Hintergrund-Tasks für Application Experience und Customer Experience Improvement.",
+    "en": "Disables periodic telemetry and compatibility evaluator scheduled tasks."
+  },
+  "category": "tasks",
+  "tier": "pro",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "task.disable",
+      "path": "\\Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser"
+    },
+    {
+      "type": "task.disable",
+      "path": "\\Microsoft\\Windows\\Application Experience\\ProgramDataUpdater"
+    },
+    {
+      "type": "task.disable",
+      "path": "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator"
+    },
+    {
+      "type": "task.disable",
+      "path": "\\Microsoft\\Windows\\Customer Experience Improvement Program\\UsbCeip"
+    }
+  ]
+}

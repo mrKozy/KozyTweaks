@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "power.ultimate-performance",
+  "version": 1,
+  "name": {
+    "de": "Ultimative Leistung (Energieplan)",
+    "en": "Ultimate Performance Power Plan"
+  },
+  "description": {
+    "de": "Erstellt und aktiviert den Energieplan 'Ultimative Leistung' für maximale System-Performance.",
+    "en": "Duplicates and activates the Ultimate Performance power scheme."
+  },
+  "category": "power",
+  "tier": "basic",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "powercfg.scheme",
+      "op": "duplicate",
+      "sourceGuid": "e9a42b02-d5df-448d-aa00-03f14749eb61",
+      "name": "kozy Performance"
+    }
+  ]
+}

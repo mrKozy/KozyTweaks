@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "services.sysmain-off",
+  "version": 1,
+  "name": {
+    "de": "SysMain (SuperFetch) deaktivieren",
+    "en": "Disable SysMain (SuperFetch)"
+  },
+  "description": {
+    "de": "Deaktiviert den SysMain-Dienst zur Vermeidung unnötiger Festplatten- und Speicherzugriffe (empfohlen für SSDs/NVMes).",
+    "en": "Disables the SysMain service to reduce background disk and memory activity on SSDs."
+  },
+  "category": "services",
+  "tier": "extreme",
+  "risk": "moderate",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "service.config",
+      "name": "SysMain",
+      "startMode": "disabled",
+      "stop": true
+    }
+  ]
+}

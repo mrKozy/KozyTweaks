@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "power.usb-suspend-off",
+  "version": 1,
+  "name": {
+    "de": "Selektives USB-Energiesparen deaktivieren",
+    "en": "Disable USB Selective Suspend"
+  },
+  "description": {
+    "de": "Verhindert, dass Windows USB-Eingabegeräte (Maus, Tastatur, Headset) in den Ruhezustand versetzt.",
+    "en": "Prevents Windows from suspending USB devices like mice, keyboards, and headsets."
+  },
+  "category": "power",
+  "tier": "pro",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "none",
+  "actions": [
+    {
+      "type": "powercfg.value",
+      "scheme": "ACTIVE",
+      "subgroup": "2a737441-1930-4402-8d77-b2bebba308a3",
+      "setting": "48e6b7a6-50f5-4782-a5d4-53bb8f07e226",
+      "ac": 0
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "gaming.disable-gamedvr",
+  "version": 1,
+  "name": { "de": "Game-DVR deaktivieren", "en": "Disable Game DVR" },
+  "description": {
+    "de": "Schaltet die Hintergrundaufnahme der Xbox Game Bar ab.",
+    "en": "Turns off background capture of Xbox Game Bar."
+  },
+  "category": "gaming",
+  "tier": "basic",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "frametime",
+  "actions": [
+    { "type": "registry.set", "hive": "HKCU", "path": "System\\GameConfigStore", "name": "GameDVR_Enabled", "kind": "DWord", "value": 0 },
+    { "type": "registry.set", "hive": "HKCU", "path": "Software\\Microsoft\\Windows\\CurrentVersion\\GameDVR", "name": "AppCaptureEnabled", "kind": "DWord", "value": 0 },
+    { "type": "registry.set", "hive": "HKLM", "path": "SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR", "name": "AllowGameDVR", "kind": "DWord", "value": 0 }
+  ]
+}

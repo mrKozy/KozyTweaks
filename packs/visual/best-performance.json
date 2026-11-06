@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "visual.best-performance",
+  "version": 1,
+  "name": {
+    "de": "Visuelle Effekte auf beste Leistung",
+    "en": "Visual Effects for Best Performance"
+  },
+  "description": {
+    "de": "Stellt Windows-Darstellungsoptionen auf 'Für optimale Leistung anpassen'.",
+    "en": "Adjusts Windows visual effects settings for best performance."
+  },
+  "category": "visual",
+  "tier": "pro",
+  "risk": "safe",
+  "requiresReboot": false,
+  "supports": {
+    "minBuild": 19045,
+    "maxBuild": null,
+    "editions": ["Home", "Pro", "Enterprise", "Education"],
+    "deviceClass": ["desktop", "laptop"],
+    "gpuVendor": null
+  },
+  "conflictsWith": [],
+  "dependsOn": [],
+  "irreversible": false,
+  "benchmarkHint": "frametime",
+  "actions": [
+    {
+      "type": "registry.set",
+      "hive": "HKCU",
+      "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects",
+      "name": "VisualFXSetting",
+      "kind": "DWord",
+      "value": 2
+    }
+  ]
+}
