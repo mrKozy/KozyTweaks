@@ -3,6 +3,7 @@
 [Oo]bj/
 [Oo]ut/
 dist/
+publish/
 *.user
 *.suo
 *.pdb
