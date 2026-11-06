@@ -23,4 +23,17 @@ public partial class MainWindow : FluentWindow
             _viewModel.NavigateTo(tag);
         }
     }
+
+    private void AuthorCredit_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        try
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://github.com/mrKozy",
+                UseShellExecute = true,
+            });
+        }
+        catch { }
+    }
 }

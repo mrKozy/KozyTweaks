@@ -35,7 +35,7 @@ public partial class SettingsViewModel : ObservableObject
         {
             Process.Start(new ProcessStartInfo
             {
-                FileName = "https://github.com",
+                FileName = "https://github.com/mrKozy",
                 UseShellExecute = true,
             });
         }

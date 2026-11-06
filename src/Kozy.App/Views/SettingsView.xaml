@@ -22,13 +22,16 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="kozy - Windows Optimizer" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                        <TextBlock Text="{Binding AppVersion}" Foreground="#57D98D" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                            <TextBlock Text="{Binding AppVersion}" Foreground="#57D98D" FontSize="13" FontWeight="SemiBold" Margin="0,0,10,0"/>
+                            <TextBlock Text="•  Created by mrKozy" Foreground="#60CDFF" FontSize="13" FontWeight="SemiBold"/>
+                        </StackPanel>
                         <TextBlock Text="100% Free &amp; Open Source Windows optimization utility. Safe, transparent, and reversible." Foreground="#8A8886" FontSize="12"/>
                     </StackPanel>
                     <ui:Button Grid.Column="1" Appearance="Primary" Command="{Binding OpenGitHubCommand}" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
                             <ui:SymbolIcon Symbol="Code24" FontSize="16" Margin="0,0,8,0"/>
-                            <TextBlock Text="GitHub Repository" VerticalAlignment="Center"/>
+                            <TextBlock Text="GitHub Profile" VerticalAlignment="Center"/>
                         </StackPanel>
                     </ui:Button>
                 </Grid>
